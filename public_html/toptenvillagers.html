@@ -1,0 +1,153 @@
+
+<!DOCTYPE html> 
+<html> 
+    <head><link href="css/css.css" rel="stylesheet" type="text/css"/><meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Top 10 Villagers: JSON</title>
+        <script>
+
+
+
+            let villagers = [
+                                {name:'Raymond', personality:'Smug',animal:'Cat'},
+                                {name:'Marshal', personality:'Smug', animal:'Squirrel'},
+                                {name:'Marina', personality:'Normal', animal:'Octopus'},
+                                {name:'Bangle', personality:'Peppy', animal:'Tiger'},
+                                {name:'Zucker', personality:'Lazy', animal:'Octopus'},
+                                {name:'Bob', personality:'Lazy', animal:'Cat'},
+                                {name:'Sherb', personality:'Lazy', animal:'Goat'},
+                                {name:'Beau', personality:'Lazy', animal:'Deer'},
+                                {name:'Audie', personality:'Peppy', animal:'Wolf'},
+                                {name:'Fauna', personality:'Normal', animal:'Deer'}
+                            ];
+            
+            let uniqueName = villagers.length
+
+
+            function displayVillagers(selectedVillagers)
+            {
+                let htmlString = `<table id=villagersTable>
+                     <tr>
+                       <th>Name</th>
+                       <th>Personality</th>
+                       <th>Animal</th>
+                     </tr>`
+                selectedVillagers.map(villager =>
+                {
+                    htmlString += `<tr>
+                         <td>${villager.name}</td>
+                         <td>${villager.personality}</td>
+                         <td>${villager.animal}</td>
+                       </tr>`
+                })
+
+                document.getElementById("selectedVillagersTable").innerHTML = htmlString
+            }
+
+
+            function searchVillagersByName(name)
+            {
+                const selectedVillagers = villagers.filter(villager => villager.name === name)
+
+                displayCars(selectedVillagers)
+                document.getElementById("name").value = ""
+            }
+
+
+            function searchVillagersByPersonality(personality)
+            {
+                const selectedVillagers = villagers.filter(villager => villager.personality === personality)
+
+                displayCars(selectedVillagers)
+                document.getElementById("personality").value = ""
+            }
+            
+            function searchVillagersByAnimal(animal)
+            {
+                const selectedVillagers = villagers.filter(villager => villager.animal === animal)
+
+                displayCars(selectedVillagers)
+                document.getElementById("animal").value = ""
+            }
+            
+
+
+            function addVillager(name, personality, animal)
+            {
+                let newVillager = {name: name, personality:personality, animal:animal}
+                villagers.push(newVillager)
+
+                uniqueName++
+
+                displayVillagers(villagers)
+                document.getElementById("addName").value = ""
+                document.getElementById("addPersonality").value = ""
+                document.getElementById("addAnimal").value = ""
+            }
+
+        </script>
+    </head>
+    <body id="mainBody">
+        <div id="container">
+        <div class="nav">
+            
+          <a href="index.html">Home</a>
+          <a href="media.html">Media</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="toptenvillagers.html">Top 10 Villagers</a>
+          <div class="dropdown">
+            <button class="drop">Characters 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="specialcharacters.html">Special Characters</a>
+              <a href="main.html">Main Characters</a>
+            </div>
+          </div> 
+          <div id="logo"><img src="images/ac_logo.png" title="Logo" alt="ac logo"></div>
+        </div>        
+        </div>
+    <body onload='displayVillagers(villagers)'> 
+        
+        <form id="search">
+  <input type="text" name="search" placeholder="Search..">
+</form>
+        <div id="filter-records"></div> <!--will contain filtered json data based on search string-->
+        <form>
+            <fieldset>
+                <legend>Display All Villagers</legend>
+                <input type="button" value='Display All Villagers' onclick="displayVillagers(villagers)">
+            </fieldset>
+            
+            <fieldset>
+                <legend>Search by name</legend>
+                <input type="text" id="name" placeHolder="Name">
+                <input type="button" value='Submit' onclick="searchCarsByName(parseInt(document.getElementById('name').value))">
+            </fieldset>
+
+            <fieldset>
+                <legend>Search by personality</legend>
+                <input type="text" id="searchPersonality" placeHolder="Personality">
+                <input type="button" value='Submit' onclick="searchCarsByPersonality(document.getElementById('pero').value)">
+            </fieldset>
+            
+             <fieldset>
+                <legend>Search by Animal</legend>
+                <input type="text" id="Animal" placeHolder="Animal">
+                <input type="button" value='Submit' onclick="searchCarsByAnimal(parseInt(document.getElementById('Animal').value))">
+            </fieldset>
+
+            <fieldset>
+                <legend>Add</legend>
+                <input type="text" id="addName" placeHolder="Name"><br>
+                <input type="text" id="addPersonality" placeHolder="Personality"><br>
+                <input type="text" id="addAnimal" placeHolder="Animal"><br>
+                <input type="button" value='Submit' onclick="addVillager(document.getElementById('addName').value, document.getElementById('addPersonality').value, parseInt(document.getElementById('addAnimal').value))">
+            </fieldset>
+
+        </form>
+
+        <div id="selectedVillagersTable"></div>                
+
+    </body> 
+</html> 
+
