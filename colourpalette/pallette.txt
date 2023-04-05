@@ -1,0 +1,9 @@
+
+
+yellow: 	#eed147
+brown: #7b572d
+white/grey: #e6e2d8
+red: #dd754f
+dgreen: #79a248
+green: 	#7cbe6e
+lgreen: 	#accda5
